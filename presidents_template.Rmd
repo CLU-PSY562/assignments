@@ -1,0 +1,134 @@
+---
+title: "Wrangling Practice with US President Data"
+author: "NAME"
+date: "10/2/2017"
+---
+
+<h4 align="center">US Presidents Data</h4>
+
+In this assignment, you'll work with teh dataset called `presidential` in the `ggplot2` library.  I'll also introduce you to the `lubridate` function that is mentioned in your book but will not be covered in class. 
+
+Notice how I included `warning=FALSE` and `message=FALSE` for several chunks.  Add those to your chunks to improve the clarity of the output.
+
+```{r load libraries, include=FALSE}
+library(ggplot2)
+library(tidyverse)
+```
+
+
+1. What variables are in the data `presidential`? How many column and rows in the data?
+```{r}
+```
+
+2. Use `select` to retrieve only the names and party affiliations for the presidents listed. 
+```{r}
+
+```
+
+3. Use `filter` to retrieve the Republican presidents only.
+```{r}
+
+```
+
+4. What Democratic presidents served since 1973? Only show the names of the presidents.  Use `filter` and `select` with a `%>%`.
+```{r}
+
+```
+
+<h5 align="center">Working with Dates using `lubridate`</h5>
+
+Lubridate works well with our data to manipulate and work with dates.  Here's a <a  href="https://cran.r-project.org/web/packages/lubridate/lubridate.pdf">link</a> to help pages for the library.  
+
+
+5. How long was the president's term?
+
+Here you'll use your first `lubridate` functions called `interval` and `dyears`. Uncomment the block and see what you get. 
+```{r, warning=FALSE, message=FALSE}
+#library(lubridate) # install if you haven't already
+#mypresidents <- presidential %>%
+#  mutate(term.length = interval(start, end) / dyears(1))
+#mypresidents
+```
+Notice that once I added a new variable to the data that I used the assignment operator to create a new data frame. It's sometimes good to do this when you add something new.  Other times it's unnecessary and you can end up having many, many, many new data frames (i.e., mypresidents1, mypresidentsnew, etc.)
+
+6. Checkout `?interval` to see what interval does. You can do the same with `?dyears`.
+What do they do?
+Answer:
+
+7. Practice `rename` to make the existing variable names appear as you want them to appear. In this case, remove the period between the variable we just created called `term.length`.  Rename it to `term_length`.  
+```{r}
+
+```
+
+8. Create a variable that shows the year the president was elected.  Here we use `year` from `lubridate` within `mutate`.  Just uncomment the commands and run it.
+```{r}
+#mypresidents <- mutate(mypresidents, elected = year(start)-1)
+#mypresidents
+```
+What did it do?
+Answer:
+
+9. Repeat the above code but create a new variable called `retired` that notes one year after their term ended.
+```{r}
+
+```
+What did it do?
+Answer:
+
+10. Lyndon Johnson and Gerald Ford were not elected.  We need to sift through the data and put in a `NA` for their elected year.  You can do this using the `ifelse` function and the `%in%` operator. Uncomment and run the code below to see how it works.
+```{r}
+#mypresidents <- mypresidents %>% 
+#  mutate(elected = ifelse((name %in% c("Johnson","Ford")), NA, elected))
+#mypresidents
+```
+Notice, the `%in%` operator acts similalry to `filter`.  Explain what this doing.
+Answer:
+
+10. Sort the data frame by `term_length` using `arrange`. Don't save it just run with wtih a pipe.
+```{r}
+
+```
+Who had the shortest term length?
+Answer:
+
+11. Use `arrange` to sort the further by `party` to break the ties (still use `term_length`!). Use the pipe and `select` to show only `term_length` and `party`.  
+```{r}
+```
+What democrat had the shorters term?
+Answer:
+
+<h5 align="center">Practice Summarizing by Groups with `summarize` and `group_by`</h5>
+
+
+12. `Summarize` will provide a single row of information that can summarize your data in a number of ways.  In one command using `summarize`, see if you can create the following variables:
+`avg_length` using mean by term_lenght
+`num_dems` using sum by party=="Democrat" (it adds them up)
+`first_year` using min(year(start)) to tell us first year.
+```{r}
+# Code to get you going
+#mypresidents %>%
+#  summarize(first_year = ,
+#  )
+```
+
+13. `Summarize` the code from above by group it by `party` using `group_by`
+```{r}
+# Starter Code
+
+#mypresidents %>%
+#   %>%
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
