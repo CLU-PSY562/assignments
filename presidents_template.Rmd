@@ -101,8 +101,8 @@ Answer:
 
 
 12. `Summarize` will provide a single row of information that can summarize your data in a number of ways.  In one command using `summarize`, see if you can create the following variables:
-`avg_length` using mean by term_lenght
-`num_dems` using sum by party=="Democrat" (it adds them up)
+`avg_length` using mean by term_length
+`num_dems` using sum by party=="Democratic" (it adds them up)
 `first_year` using min(year(start)) to tell us first year.
 ```{r}
 # Code to get you going
@@ -110,6 +110,7 @@ Answer:
 #  summarize(first_year = ,
 #  )
 ```
+What was the average term length?
 
 13. `Summarize` the code from above by group it by `party` using `group_by`
 ```{r}
@@ -118,7 +119,7 @@ Answer:
 #mypresidents %>%
 #   %>%
 ```
-
+What was the average term length for Republicans? Democrats?
 
 
 
